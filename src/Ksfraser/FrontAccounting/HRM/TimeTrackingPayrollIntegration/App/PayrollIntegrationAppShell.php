@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Ksfraser\FrontAccounting\HRM\TimeTrackingPayrollIntegration\App;
 
 use ksfraser\FrontAccounting\Common\App\AbstractAppShell;
-use ksfraser\FrontAccounting\Common\Menu\FAModuleMenu;
-use Ksfraser\FrontAccounting\HRM\TimeTrackingPayrollIntegration\Controller\PayrollIntegrationTabController;
+use ksfraser\FrontAccounting\Common\App\TabRegistration;
 
 class PayrollIntegrationAppShell extends AbstractAppShell
 {
@@ -14,17 +13,16 @@ class PayrollIntegrationAppShell extends AbstractAppShell
     {
         parent::__construct('payroll', 'index.php', 'view', 'payroll_integration');
 
-        $this->add_module(_("Payroll"));
-
-        $menu = new FAModuleMenu(
-            'modules/ksf_FA_HRM_TimeTrackingPayrollIntegration/index.php',
-            'view',
-            ''
-        );
-
-        $menu->addItem('payroll_integration', _("Payroll Integration"), MENU_INQUIRY)
-             ->registerWithApp($this, 'SA_PAYROLL_VIEW');
-
-        $this->add_extensions();
+        $this->registerTab(new TabRegistration(
+            'payroll_integration',
+            'Payroll Integration',
+            'SA_PAYROLL_VIEW',
+            null,
+            10,
+            0,
+            null,
+            null,
+            array()
+        ));
     }
 }

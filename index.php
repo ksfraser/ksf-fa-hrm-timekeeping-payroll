@@ -1,17 +1,11 @@
 <?php
-declare(strict_types=1);
 
-use Ksfraser\FrontAccounting\HRM\TimeTrackingPayrollIntegration\App\PayrollIntegrationFrontController;
-use Ksfraser\FrontAccounting\HRM\TimeTrackingPayrollIntegration\App\PayrollIntegrationAppShell;
+require_once __DIR__ . '/bootstrap.php';
 
 $path_to_root = '../..';
 
-if (file_exists(__DIR__ . '/bootstrap.php')) {
-    require_once __DIR__ . '/bootstrap.php';
-}
-
-$frontController = new PayrollIntegrationFrontController(
-    new PayrollIntegrationAppShell(),
+$frontController = new \Ksfraser\FrontAccounting\HRM\TimeTrackingPayrollIntegration\App\PayrollIntegrationFrontController(
+    new \Ksfraser\FrontAccounting\HRM\TimeTrackingPayrollIntegration\App\PayrollIntegrationAppShell(),
     'SA_PAYROLL_VIEW',
     $path_to_root
 );
