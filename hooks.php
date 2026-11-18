@@ -8,10 +8,10 @@ require_once __DIR__ . '/includes/common.inc';
 require_once __DIR__ . '/includes/events.inc';
 use ksfraser\RelatedTo\DTO\RelatedRecordDto;
 define('SS_ksf_FA_HRM_TimeTrackingPayrollIntegration', 201 << 8);
-if (!defined('SA_PAYROLL_VIEW')) {
-    define('SA_PAYROLL_VIEW', SS_ksf_FA_HRM_TimeTrackingPayrollIntegration | 1);
-    define('SA_PAYROLL_MANAGE', SS_ksf_FA_HRM_TimeTrackingPayrollIntegration | 2);
-    define('SA_PAYROLL_ADMIN', SS_ksf_FA_HRM_TimeTrackingPayrollIntegration | 3);
+if (!defined('SA_HRM_PAYROLL_VIEW')) {
+    define('SA_HRM_PAYROLL_VIEW', SS_ksf_FA_HRM_TimeTrackingPayrollIntegration | 1);
+    define('SA_HRM_PAYROLL_MANAGE', SS_ksf_FA_HRM_TimeTrackingPayrollIntegration | 2);
+    define('SA_HRM_PAYROLL_ADMIN', SS_ksf_FA_HRM_TimeTrackingPayrollIntegration | 3);
 }
 class hooks_ksf_FA_HRM_TimeTrackingPayrollIntegration extends hooks {
     const RESPONDERS = array('RELATED_TO_FIELDS', 'PAYROLL_RESOLVE', 'PAYROLL_FIELDS', 'PAYROLL_LIST');
@@ -21,9 +21,9 @@ class hooks_ksf_FA_HRM_TimeTrackingPayrollIntegration extends hooks {
     function install_options($app) { }
     function install_access() {
         $security_sections[SS_ksf_FA_HRM_TimeTrackingPayrollIntegration] = _("Payroll");
-        $security_areas['SA_PAYROLL_VIEW'] = array(SA_PAYROLL_VIEW, _("View payroll runs"));
-        $security_areas['SA_PAYROLL_MANAGE'] = array(SA_PAYROLL_MANAGE, _("Manage payroll runs"));
-        $security_areas['SA_PAYROLL_ADMIN'] = array(SA_PAYROLL_ADMIN, _("Administer payroll"));
+        $security_areas['SA_HRM_PAYROLL_VIEW'] = array(SA_HRM_PAYROLL_VIEW, _("View payroll runs"));
+        $security_areas['SA_HRM_PAYROLL_MANAGE'] = array(SA_HRM_PAYROLL_MANAGE, _("Manage payroll runs"));
+        $security_areas['SA_HRM_PAYROLL_ADMIN'] = array(SA_HRM_PAYROLL_ADMIN, _("Administer payroll"));
         return array($security_areas, $security_sections);
     }
     function activate_extension($company, $check_only = true) {
@@ -40,9 +40,9 @@ class hooks_ksf_FA_HRM_TimeTrackingPayrollIntegration extends hooks {
     public function getModuleConstants(&$data, $opts = null) {
         $data['constants'] = array(
             'SS_ksf_FA_HRM_TimeTrackingPayrollIntegration' => SS_ksf_FA_HRM_TimeTrackingPayrollIntegration,
-            'SA_PAYROLL_VIEW' => SA_PAYROLL_VIEW,
-            'SA_PAYROLL_MANAGE' => SA_PAYROLL_MANAGE,
-            'SA_PAYROLL_ADMIN' => SA_PAYROLL_ADMIN,
+            'SA_HRM_PAYROLL_VIEW' => SA_HRM_PAYROLL_VIEW,
+            'SA_HRM_PAYROLL_MANAGE' => SA_HRM_PAYROLL_MANAGE,
+            'SA_HRM_PAYROLL_ADMIN' => SA_HRM_PAYROLL_ADMIN,
         );
         return true;
     }
